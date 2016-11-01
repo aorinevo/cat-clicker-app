@@ -1,4 +1,4 @@
-jQuery(function(){    
+jQuery(document).ready(function($){    
     //Model
     var catList = {
       cat1: {
@@ -63,18 +63,18 @@ jQuery(function(){
     
 
     var mainController = {
-      init: function(){
-        catNameListView.render( catList ); 
-        this.bindEvents( catList );
+      init: function( cats ){
+        catNameListView.render( cats ); 
+        this.bindEvents( cats );
       },
-      bindEvents: function(){
+      bindEvents: function( cats ){
         $('#cat-name-list li').on('click',function(){
           var key = $(this).attr('id'),
-              cat = catList[key];
+              cat = cats[key];
           catDetailController.init( key, cat);
         });          
       }        
     };
           
-    mainController.init();
-})();
+    mainController.init( catList );
+});
