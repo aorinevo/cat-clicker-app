@@ -1,5 +1,5 @@
-(function(){
-  $(document).ready(function(){        
+jQuery(function(){    
+    //Model
     var catList = {
       cat1: {
         name: "Cat1",
@@ -28,20 +28,53 @@
       }
     };
     
-    function createCatNameList(){
-      $.each(catList, function(key, cat){
-        $('#cat-name-list').append('<ul><li id="'+ key +'">'+ cat.name +'</li></ul>');
-        $('#cat-name-list li').on('click',function(){
-          var _cat = $(this).attr('id');
-          $('#cat-image').html('<div>'+ catList[_cat].name +'</div><img class=id="'+ key +'" src="'+ catList[_cat].src +'"/><div id="'+ key +'-counter">'+catList[_cat].numberOfClicks+'</div>');
-          $('#cat-image img').on('click',function(){
-            catList[_cat].numberOfClicks++
-            $('#'+key+'-counter').html(catList[_cat].numberOfClicks);
-          });
-        });    
-      }); 
+    //Views
+    var catNameListView,
+        catDetailView;
+    
+    catNameListView = {
+      render: function( cats ){
+        var catNameList = $('#cat-name-list');
+        $.each( cats , function(key, cat){
+          catNameList.append('<ul><li id="'+ key +'">'+ cat.name +'</li></ul>');
+        });
+      }
     };
-        
-    createCatNameList();
-  });
+
+    catDetailView = {
+      render: function( key, cat ){
+        $('#cat-image').html('<div>'+ cat.name +'</div><img class=id="'+ key +'" src="'+ cat.src +'"/><div id="'+ key +'-counter">'+ cat.numberOfClicks+'</div>');
+      }
+    };  
+
+    //Controllers    
+    catDetailController = {
+      init: function( key, cat ){
+        catDetailView.render( key, cat );
+        this.bindEvents( key, cat);
+      },
+      bindEvents: function( key, cat ){
+        $('#cat-image img').on('click',function(){
+          cat.numberOfClicks++;
+          $('#'+key+'-counter').html(cat.numberOfClicks);
+        });        
+      }  
+    };
+    
+
+    var mainController = {
+      init: function(){
+        catNameListView.render( catList ); 
+        this.bindEvents( catList );
+      },
+      bindEvents: function(){
+        $('#cat-name-list li').on('click',function(){
+          var key = $(this).attr('id'),
+              cat = catList[key];
+          catDetailController.init( key, cat);
+        });          
+      }        
+    };
+          
+    mainController.init();
 })();
