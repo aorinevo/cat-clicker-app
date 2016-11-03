@@ -36,26 +36,32 @@ jQuery(document).ready(function($){
     
     //Views
     var catNameListView,
-        catDetailView;
+        catDetailView,
+        catCRUDView;
     
     catNameListView = {
       init: function(){   
-        this.$catNameList = $('#cat-name-list');       
-        this.render();
-        this.bindEvents();
-      },   
+        this.$catNameList = $('#cat-name-list ul');       
+        this.render();        
+      },      
       bindEvents: function(){
         this.$catNameList.find('li').on('click',function(){
           controller.setCurrentCat( $('li').index(this) );
           controller.switchCatDetailView();
         });          
-      },         
+      },    
+      unbindEvents: function(){
+        this.$catNameList.find('li').off('click');
+      },          
       render: function(){  
         var cats = controller.getCatList(),
             self = this;
+        this.unbindEvents();        
+        this.$catNameList.html("");
         $.each( cats , function(key, cat){
-          self.$catNameList.append('<ul><li id="'+ key +'">'+ cat.name +'</li></ul>');
-        });
+          self.$catNameList.append('<li id="'+ key +'"><a>'+ cat.name +'</a></li>');
+        });    
+        this.bindEvents();    
       }
     };
 
@@ -88,19 +94,67 @@ jQuery(document).ready(function($){
         this.$catClickCounter.html( cat.numberOfClicks );        
       }
     };  
+    
+    catCRUDView = {
+      init: function(){
+        var $catFormContainer = $('#cat-form-container'),
+            $catForm = $('#cat-form'),
+            $inputName = $catForm.find('input[name="name"]'),
+            $inputSrc = $catForm.find('input[name="src"]'),
+            $inputNumberOfClicks = $catForm.find('input[name="numberOfClicks"]');
+        
+        $.extend(this, {$catFormContainer, $catForm, $inputName, $inputSrc, $inputNumberOfClicks});
+        this.render();
+        this.bindEvents();
+      },
+      bindEvents: function(){        
+        var self = this;
+        this.$catForm.find('button.save').on('click', function( event ){          
+          event.preventDefault();
+          controller.saveCatDetails( self.$inputName.val(), self.$inputSrc.val(), self.$inputNumberOfClicks.val() );
+        });
+        this.$catFormContainer.find('button.toggle').on('click',function( event ){
+          event.preventDefault();
+          self.toggle();
+        });
+      },
+      render: function(){
+        var cat = controller.getCurrentCat();
+        this.$inputName.attr('value', cat.name).val( cat.name );
+        this.$inputSrc.attr('value', cat.src).val( cat.src );
+        this.$inputNumberOfClicks.attr('value', cat.numberOfClicks).val( cat.numberOfClicks );        
+      },
+      save: function(){
+        controller.saveCatDetails( );
+      },
+      toggle: function(){
+        this.$catForm.toggle();
+      }
+    };
 
     //Controller
     var controller = {
       init: function( ){
         model.init();
         catNameListView.init( ); 
-        catDetailView.init( );                
+        catDetailView.init( ); 
+        catCRUDView.init();               
       },
       switchCatDetailView: function(){
         catDetailView.render();
+        catCRUDView.render();
+      },
+      saveCatDetails: function( name, src, numberOfClicks ){
+        var cat = this.getCurrentCat();
+        cat.name = name;
+        cat.src = src;
+        cat.numberOfClicks = numberOfClicks;
+        catDetailView.render();
+        catNameListView.render();
+        catCRUDView.render();
       },
       getNumberOfClicks: function(){
-        return this.getCurrentCat().numberOfClicks;
+        return parseInt(this.getCurrentCat().numberOfClicks);
       },
       setNumberOfClicks: function( value ){
         var cat = this.getCurrentCat();

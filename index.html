@@ -3,28 +3,36 @@
   <head>
     <meta charset="utf-8">
     <title>Cat Clicker</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->  
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">    
+    <link rel="stylesheet" href="css/main.css">  
+    <script src="lib/jquery/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
     <script src="js/app.js" charset="utf-8"></script>
   </head>
   <body class="container">
+    <h1>Cat Clicker</h1>
     <div class="row">
-      <div class="col-xs-3" id="cat-name-list"></div>
+      <div class="col-xs-3" id="cat-name-list"><ul class="nav nav-pills nav-stacked"></ul></div>
       <div class="col-xs-9" id="cat-details">
-        <div class="col-xs-12" id="cat-name"></div>
+        <h2 class="col-xs-10" id="cat-name"></h2>
         <div class="col-xs-12" id="cat-image-container">
-          <img id="cat-image" src="" alt="cat image" />
+          <img id="cat-image" class="img-rounded" width="304" height="236" src="" alt="cat image" />
         </div>
-        <div class="col-xs-12" id="cat-click-counter"></div>
+        <h3 class="col-xs-12">Number of Clicks: <span id="cat-click-counter"></span></h3>
       </div>      
     </div>
-    <div class="row">
-      <form class="col-xs-6">
+    <div id="cat-form-container" class="row">
+      <div class="col-xs-3">
+        <button type="button" class="btn btn-default toggle" name="button">Admin</button>
+      </div>
+      <form id="cat-form" class="col-xs-9">
         <input type="text" class="form-control" name="name" placeholder="Cat Name" value="">
-        <input type="text" class="form-control" name="src" value="">
-        <input type="text" class="form-control" name="numberOfClicks" value="">
-        <button class="btn btn-default">Cancel</button> <button type="submit" class="btn btn-default">Save</button>
+        <input type="text" class="form-control" name="src" placeholder="Image url" value="">
+        <input type="number" class="form-control" name="numberOfClicks" placeholder="Number of Clicks" value="">
+        <div>
+          <button class="btn btn-default toggle">Cancel</button> <button type="submit" class="save btn btn-default">Save</button>
+        </div>
       </form>
     </div>
   </body>
