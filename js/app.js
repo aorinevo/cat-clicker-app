@@ -112,6 +112,7 @@ jQuery(document).ready(function($){
         this.$catForm.find('button.save').on('click', function( event ){          
           event.preventDefault();
           controller.saveCatDetails( self.$inputName.val(), self.$inputSrc.val(), self.$inputNumberOfClicks.val() );
+          self.toggle();
         });
         this.$catFormContainer.find('button.toggle').on('click',function( event ){
           event.preventDefault();
@@ -123,9 +124,6 @@ jQuery(document).ready(function($){
         this.$inputName.attr('value', cat.name).val( cat.name );
         this.$inputSrc.attr('value', cat.src).val( cat.src );
         this.$inputNumberOfClicks.attr('value', cat.numberOfClicks).val( cat.numberOfClicks );        
-      },
-      save: function(){
-        controller.saveCatDetails( );
       },
       toggle: function(){
         this.$catForm.toggle();
