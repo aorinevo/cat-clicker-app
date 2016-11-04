@@ -105,15 +105,15 @@ function CatNameListController( $rootScope ) {
   this.catList = model.catList;
   this.showAdminView = false;
   this.switchCatDetailView = function ( index ) {
-    console.log(index);
     $rootScope.$broadcast( 'switchCat', {cat: model.catList[ index ]} );
-  }
+  }  
 }
 
 CatFormController.$inject = ['$scope'];
 function CatFormController( $scope ) {
   var self = this;
   this.showAdminView = false;
+  this.currentCat = model.catList[0];  
   $scope.$on('switchCat', function( event, data ){    
     self.currentCat = data.cat;
   });
