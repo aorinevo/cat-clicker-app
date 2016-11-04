@@ -1,0 +1,5 @@
+<div class="col-xs-3" id="cat-name-list">
+  <ul class="nav nav-pills nav-stacked">
+    <li ng-repeat="cat in $ctrl.catList" ng-click="$ctrl.switchCatDetailView($index)"><a>{{cat.name}}</a></li>          
+  </ul>
+</div>

@@ -10,36 +10,12 @@
     <script src="lib/bootstrap/js/bootstrap.js"></script>
     <script src="js/ngCatClickerApp.js" charset="utf-8"></script>
   </head>
-  <body class="container" ng-app="catClickerApp">
-    <div ng-controller="CatClickerController as ctrl">
+  <body class="container" ng-app="catClickerApp">    
       <h1>Cat Clicker</h1>
       <div class="row">
-        <div class="col-xs-3" id="cat-name-list">
-          <ul class="nav nav-pills nav-stacked">
-            <li ng-repeat="cat in ctrl.catList" ng-click="ctrl.switchCatDetailView($index)"><a>{{cat.name}}</a></li>          
-          </ul>
-        </div>
-        <div class="col-xs-9" id="cat-details">
-          <h2 class="col-xs-10" id="cat-name">{{ctrl.currentCat.name}}</h2>
-          <div class="col-xs-12" id="cat-image-container">
-            <img id="cat-image" ng-click="ctrl.incrementClickCounter()" class="img-rounded" width="304" height="236" src="{{ctrl.currentCat.src}}" alt="cat image" />
-          </div>
-          <h3 class="col-xs-12">Number of Clicks: <span id="cat-click-counter">{{ctrl.currentCat.numberOfClicks}}</span></h3>
-        </div>      
+        <cat-name-list></cat-name-list>
+        <cat-details></cat-details>
       </div>
-      <div id="cat-form-container" class="row">
-        <div class="col-xs-3">
-          <button type="button" class="btn btn-default" name="button" ng-click="ctrl.toggleAdminView()">Admin</button>
-        </div>
-        <form id="cat-form" class="col-xs-9" ng-if="ctrl.showAdminView">
-          <input type="text" class="form-control" name="name" placeholder="Cat Name" ng-model="ctrl.currentCat.name" value="{{ctrl.currentCat.name}}">
-          <input type="text" class="form-control" name="src" placeholder="Image url" ng-model="ctrl.currentCat.src" value="{{ctrl.currentCat.src}}">
-          <input type="number" class="form-control" name="numberOfClicks" placeholder="Number of Clicks" ng-model="ctrl.currentCat.numberOfClicks" value="{{ctrl.currentCat.numberOfClicks}}">
-          <div>
-            <button class="btn btn-default" ng-click="ctrl.toggleAdminView()">Cancel</button>
-          </div>
-        </form>
-      </div>      
-    </div>
+        <cat-form></cat-form>               
   </body>
 </html>
