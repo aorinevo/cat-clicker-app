@@ -3,9 +3,9 @@
     <button type="button" class="btn btn-default" name="button" ng-click="$ctrl.toggleAdminView()">Admin</button>
   </div>
   <form id="cat-form" class="col-xs-9" ng-if="$ctrl.showAdminView">
-    <input type="text" class="form-control" name="name" placeholder="Cat Name" ng-model="$ctrl.name" value="{{$ctrl.name}}">
-    <input type="text" class="form-control" name="src" placeholder="Image url" ng-model="$ctrl.src" value="{{$ctrl.src}}">
-    <input type="number" class="form-control" name="numberOfClicks" placeholder="Number of Clicks" ng-model="$ctrl.numberOfClicks" value="{{$ctrl.numberOfClicks}}">
+    <input type="text" class="form-control" name="name" placeholder="Cat Name" ng-model="$ctrl.currentCat.name">
+    <input type="text" class="form-control" name="src" placeholder="Image url" ng-model="$ctrl.currentCat.src">
+    <input type="number" class="form-control" name="numberOfClicks" placeholder="Number of Clicks" ng-model="$ctrl.currentCat.numberOfClicks">
     <div>
       <button class="btn btn-default" ng-click="$ctrl.toggleAdminView()">Cancel</button>
     </div>

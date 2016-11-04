@@ -64,7 +64,7 @@ function CatNameList() {
     scope: {
       name: '<',
       src: '<',
-      numberOfClicks: '<'
+      numberOfClicks: '='
     }
   };
   
@@ -75,7 +75,7 @@ function CatForm() {
   var ddo = {
     restrict: "E",
     templateUrl: "templates/cat-form.html",
-    controller: CatNameListController,
+    controller: CatFormController,
     bindToController: true,
     controllerAs: '$ctrl',    
     scope: {
@@ -91,30 +91,32 @@ function CatForm() {
 CatDetailsController.$inject = ['$scope'];
 function CatDetailsController( $scope ) {
   var self = this;
-  this.catList = model.catList;
   this.currentCat = model.catList[0];    
-  $scope.$on('switchCat', function( event, data ){    
+  $scope.$on('switchCat', function( event, data ){   
     self.currentCat = data.cat;
   });
   this.incrementClickCounter = function(){        
-    this.currentCat.numberOfClicks++;
+    this.currentCat.numberOfClicks = parseInt(this.currentCat.numberOfClicks) +1;
   };
 }
 
 CatNameListController.$inject = ['$rootScope'];
 function CatNameListController( $rootScope ) {
   this.catList = model.catList;
-  this.currentCat = model.catList[0];
   this.showAdminView = false;
   this.switchCatDetailView = function ( index ) {
+    console.log(index);
     $rootScope.$broadcast( 'switchCat', {cat: model.catList[ index ]} );
   }
 }
 
-function CatFormController() {
-  this.catList = model.catList;
-  this.currentCat = model.catList[0];
+CatFormController.$inject = ['$scope'];
+function CatFormController( $scope ) {
+  var self = this;
   this.showAdminView = false;
+  $scope.$on('switchCat', function( event, data ){    
+    self.currentCat = data.cat;
+  });
   this.toggleAdminView = function (){
     this.showAdminView = !this.showAdminView;
   }
