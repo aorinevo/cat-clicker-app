@@ -41,14 +41,9 @@ function CatDetails() {
   var ddo = {
     restrict: "E",
     templateUrl: "templates/cat-details.html",
-    controller: CatDetailsController,
-    bindToController: true,
+    controller: CatDetailsController,    
     controllerAs: '$ctrl',    
-    scope: {
-      name: '<',
-      src: '<',
-      numberOfClicks: '<'
-    }
+    scope: {}
   };
   
   return ddo;
@@ -58,14 +53,8 @@ function CatNameList() {
   var ddo = {
     restrict: "E",
     templateUrl: "templates/cat-name-list.html",
-    controller: CatNameListController,
-    bindToController: true,
-    controllerAs: '$ctrl',    
-    scope: {
-      name: '<',
-      src: '<',
-      numberOfClicks: '='
-    }
+    controller: CatNameListController,    
+    controllerAs: '$ctrl'
   };
   
   return ddo;
@@ -75,14 +64,9 @@ function CatForm() {
   var ddo = {
     restrict: "E",
     templateUrl: "templates/cat-form.html",
-    controller: CatFormController,
-    bindToController: true,
+    controller: CatFormController,    
     controllerAs: '$ctrl',    
-    scope: {
-      name: '<',
-      src: '<',
-      numberOfClicks: '='
-    }
+    scope: {}
   };  
   
   return ddo;
@@ -96,7 +80,7 @@ function CatDetailsController( $scope ) {
     self.currentCat = data.cat;
   });
   this.incrementClickCounter = function(){        
-    this.currentCat.numberOfClicks = parseInt(this.currentCat.numberOfClicks) +1;
+    this.currentCat.numberOfClicks++;
   };
 }
 
