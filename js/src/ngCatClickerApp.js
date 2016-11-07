@@ -11,7 +11,10 @@ function( angular, uiRouter, RoutesConfig, CatDetailsComponentController, CatNam
     .config( RoutesConfig )
     .component( 'catDetails', {
       templateUrl: "templates/cat-details.html",
-      controller: CatDetailsComponentController      
+      controller: CatDetailsComponentController,
+      bindings: {
+        catIndex: '<'
+      }    
     })    
     .component( 'catNameList', {    
       templateUrl: "templates/cat-name-list.html",

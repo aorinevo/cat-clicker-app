@@ -14,6 +14,6 @@ function( model ){
       $rootScope.$broadcast( 'counterChanged', { numberOfClicks: this.currentCat.numberOfClicks });
     }
   }
-  CatFormComponentController.$inject = ['$scope', '$rootScope'];
+  CatFormComponentController.$inject = [ '$scope', '$rootScope' ];
   return CatFormComponentController;
 });

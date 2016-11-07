@@ -2,7 +2,7 @@ define(['CatClickerModel'],
 function( model ){    
   var CatDetailsComponentController = function( $scope ) {
     var self = this;
-    this.currentCat = model.catList[0];    
+    this.currentCat = model.catList[this.catIndex];    
     $scope.$on('switchCat', function( event, data ){   
       self.currentCat = data.cat;
     });
