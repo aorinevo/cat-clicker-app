@@ -12,7 +12,7 @@ require.config({
         },
         "bootstrap": {
             deps: ["jquery"],
-            exports: "angular"
+            exports: "bootstrap"
         }
     }
 });
