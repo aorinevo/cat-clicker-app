@@ -1,6 +1,6 @@
 define(['CatClickerModel'],
 function( model ){    
-  var CatDetailsController = function( $scope ) {
+  var CatDetailsComponentController = function( $scope ) {
     var self = this;
     this.currentCat = model.catList[0];    
     $scope.$on('switchCat', function( event, data ){   
@@ -29,7 +29,7 @@ function( model ){
     };
   }
   
-  CatDetailsController.$inject = ['$scope'];
+  CatDetailsComponentController.$inject = ['$scope'];
   
-  return CatDetailsController;
+  return CatDetailsComponentController;
 })

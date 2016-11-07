@@ -1,6 +1,6 @@
 define([ 'CatClickerModel' ],
 function( model ){    
-  var CatFormController = function( $scope, $rootScope ) {
+  var CatFormComponentController = function( $scope, $rootScope ) {
     var self = this;
     this.showAdminView = false;
     this.currentCat = model.catList[0];  
@@ -14,6 +14,6 @@ function( model ){
       $rootScope.$broadcast( 'counterChanged', { numberOfClicks: this.currentCat.numberOfClicks });
     }
   }
-  CatFormController.$inject = ['$scope', '$rootScope'];
-  return CatFormController;
+  CatFormComponentController.$inject = ['$scope', '$rootScope'];
+  return CatFormComponentController;
 });
