@@ -28,7 +28,7 @@ function(){
       },
       {
         name: "Cat5",
-        src: "https://pbs.twimg.com/profile_images/1245113943/Larry_the_cat2.jpg",
+        src: "https://img1.wsimg.com/fos/sales/cwh/8/images/cats-with-hats-shop-04.jpg",
         numberOfClicks: 0,
         level: "infant"
       }
