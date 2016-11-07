@@ -1,11 +1,14 @@
 define([
-  'angular',     
+  'angular',   
+  'uiRouter',
+  'RoutesConfig',
   'CatDetailsComponentController',
   'CatNameListComponentController',  
   'CatFormComponentController'
 ],
-function( angular, CatDetailsComponentController, CatNameListComponentController, CatFormComponentController ){
-  angular.module( 'catClickerApp', [])
+function( angular, uiRouter, RoutesConfig, CatDetailsComponentController, CatNameListComponentController, CatFormComponentController ){
+  angular.module( 'catClickerApp', [ 'ui.router' ])
+    .config( RoutesConfig )
     .component( 'catDetails', {
       templateUrl: "templates/cat-details.html",
       controller: CatDetailsComponentController      
