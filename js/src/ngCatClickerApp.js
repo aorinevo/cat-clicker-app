@@ -1,18 +1,21 @@
 define([
-  'angular', 
-  'CatDetailsController', 
-  'CatNameListController', 
-  'CatFormController', 
-  'CatDetailsDirective',
-  'CatNameListDirective',
-  'CatFormDirective'
+  'angular',     
+  'CatDetailsComponentController',
+  'CatNameListComponentController',  
+  'CatFormComponentController'
 ],
-function( angular, CatDetailsController, CatNameListController, CatFormController, CatDetailsDirective, CatNameListDirective, CatFormDirective ){
-  angular.module( 'catClickerApp', [])    
-    .controller( 'CatDetailsContoller', CatDetailsController )
-    .controller( 'CatNameListContoller', CatNameListController )
-    .controller( 'CatFormContoller', CatFormController )
-    .directive( 'catDetails', CatDetailsDirective )
-    .directive( 'catNameList', CatNameListDirective )
-    .directive( 'catForm', CatFormDirective );
+function( angular, CatDetailsComponentController, CatNameListComponentController, CatFormComponentController ){
+  angular.module( 'catClickerApp', [])
+    .component( 'catDetails', {
+      templateUrl: "templates/cat-details.html",
+      controller: CatDetailsComponentController      
+    })    
+    .component( 'catNameList', {    
+      templateUrl: "templates/cat-name-list.html",
+      controller: CatNameListComponentController      
+    })
+    .component( 'catForm', {
+      templateUrl: "templates/cat-form.html",
+      controller: CatFormComponentController
+    });    
 });
