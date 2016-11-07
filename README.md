@@ -20,7 +20,7 @@ Dev features:
 ### Stuff used to make this:
 
  * [Angular 1.5.8](https://www.npmjs.com/package/angular) as the main js framework.
- * [Angular UI](https://www.npmjs.com/package/angular-ui-router) angular plugin to setup routes.
+ * [Angular ui router](https://www.npmjs.com/package/angular-ui-router) angular plugin to setup routes.
  * [jquery](https://www.npmjs.com/package/jquery) used in place of jqlite.
  * [bootstrap](https://www.npmjs.com/package/bootstrap) for default CSS and grid system.
  * [requirejs](https://www.npmjs.com/package/requirejs) for module dependencies.
