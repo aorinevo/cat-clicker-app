@@ -5,8 +5,30 @@
     <title>Cat Clicker</title>    
     <link rel="stylesheet" href="js/node_modules/bootstrap/dist/css/bootstrap.css">    
     <link rel="stylesheet" href="css/ng-main.css">    
-    <!-- <script data-main="js/src/main.js" src="js/node_modules/requirejs/require.js"></script>     -->
-    <script data-main="js/target/mainApp.js" src="js/node_modules/requirejs/require.js"></script>    
+    <script type="text/javascript">
+      var script = document.createElement( 'script' ),
+          attr = document.createAttribute( 'data-main' ),
+          debug;          
+      
+      if( window.location.search.indexOf('debug') != -1){
+        debug=true;
+      } 
+      
+      if( debug ){
+        attr.value = "js/src/main.js";
+        console.log(script);
+      } else {
+        attr.value = "js/target/mainApp.js";
+        console.log(script);
+      }
+      
+      script.type = 'text/javascript';              
+      script.src = 'js/node_modules/requirejs/require.js';
+      script.setAttributeNode( attr );
+
+      document.getElementsByTagName('head')[0].appendChild(script);
+    </script>
+
   </head>
   <body class="container">    
       <h1>Cat Clicker</h1>
