@@ -22,6 +22,9 @@ function( angular, uiRouter, RoutesConfig, CatDetailsComponentController, CatNam
     })
     .component( 'catForm', {
       templateUrl: "templates/cat-form.html",
-      controller: CatFormComponentController
+      controller: CatFormComponentController,
+      bindings: {
+        catIndex: '<'
+      }   
     });    
 });

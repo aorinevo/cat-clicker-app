@@ -3,9 +3,6 @@ function( model ){
   var CatDetailsComponentController = function( $scope ) {
     var self = this;
     this.currentCat = model.catList[this.catIndex];    
-    $scope.$on('switchCat', function( event, data ){   
-      self.currentCat = data.cat;
-    });
     $scope.$on('counterChanged', function( event, data){
       self.setClickCounter( data.numberOfClicks );
     });

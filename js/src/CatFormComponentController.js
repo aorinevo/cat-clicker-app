@@ -3,10 +3,7 @@ function( model ){
   var CatFormComponentController = function( $scope, $rootScope ) {
     var self = this;
     this.showAdminView = false;
-    this.currentCat = model.catList[0];  
-    $scope.$on('switchCat', function( event, data ){    
-      self.currentCat = data.cat;
-    });
+    this.currentCat = model.catList[ this.catIndex ];  
     this.toggleAdminView = function (){
       this.showAdminView = !this.showAdminView;
     }
